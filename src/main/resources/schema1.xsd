@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0">
+
+  <xs:element name="applicationLayer" type="applicationLayer"/>
+
+  <xs:element name="client" type="client"/>
+
+  <xs:element name="environment" type="environment"/>
+
+  <xs:complexType name="applicationLayer">
+    <xs:annotation>
+      <xs:documentation><![CDATA[(author): Grzegorz]]></xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="adminContext" type="xs:string"/>
+      <xs:element minOccurs="0" name="adminPort" type="xs:string"/>
+      <xs:element minOccurs="0" name="applicationContext" type="xs:string"/>
+      <xs:element minOccurs="0" name="applicationSystem" type="xs:string"/>
+      <xs:element minOccurs="0" name="hostName" type="xs:string"/>
+      <xs:element minOccurs="0" name="httpPort" type="xs:string"/>
+      <xs:element minOccurs="0" name="httpsPort" type="xs:string"/>
+      <xs:element minOccurs="0" name="id" type="xs:long"/>
+      <xs:element minOccurs="0" name="information" type="xs:string"/>
+      <xs:element minOccurs="0" name="operatingSystem" type="xs:string"/>
+      <xs:element minOccurs="0" name="pathName" type="xs:string"/>
+      <xs:element minOccurs="0" name="svnBranch" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="client">
+    <xs:annotation>
+      <xs:documentation><![CDATA[(author): Grzegorz]]></xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:long"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element minOccurs="0" name="information" type="xs:string"/>
+      <xs:element minOccurs="0" name="environments">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element maxOccurs="unbounded" minOccurs="0" ref="environment"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="environment">
+    <xs:annotation>
+      <xs:documentation><![CDATA[(author): Grzegorz]]></xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="id" type="xs:long"/>
+      <xs:element minOccurs="0" name="environmentType" type="environmentType"/>
+      <xs:element minOccurs="0" name="name" type="xs:string"/>
+      <xs:element minOccurs="0" name="information" type="xs:string"/>
+      <xs:element minOccurs="0" ref="applicationLayer"/>
+      <xs:element minOccurs="0" name="databaseLayer" type="databaseLayer"/>
+      <xs:element minOccurs="0" name="rmiLayer" type="rmiLayer"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="databaseLayer">
+    <xs:annotation>
+      <xs:documentation><![CDATA[(author): Grzegorz]]></xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="databaseSystem" type="xs:string"/>
+      <xs:element minOccurs="0" name="hostName" type="xs:string"/>
+      <xs:element minOccurs="0" name="id" type="xs:long"/>
+      <xs:element minOccurs="0" name="information" type="xs:string"/>
+      <xs:element minOccurs="0" name="operatingSystem" type="xs:string"/>
+      <xs:element minOccurs="0" name="port" type="xs:string"/>
+      <xs:element minOccurs="0" name="schemaName" type="xs:string"/>
+      <xs:element minOccurs="0" name="serviceName" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="rmiLayer">
+    <xs:annotation>
+      <xs:documentation><![CDATA[(author): Grzegorz]]></xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="hostName" type="xs:string"/>
+      <xs:element minOccurs="0" name="id" type="xs:long"/>
+      <xs:element minOccurs="0" name="information" type="xs:string"/>
+      <xs:element minOccurs="0" name="operatingSystem" type="xs:string"/>
+      <xs:element minOccurs="0" name="port" type="xs:string"/>
+      <xs:element minOccurs="0" name="reportsPath" type="xs:string"/>
+      <xs:element minOccurs="0" name="rmiServerPath" type="xs:string"/>
+      <xs:element minOccurs="0" name="rmiSystem" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="environmentType">
+    <xs:annotation>
+      <xs:documentation><![CDATA[(author): Grzegorz]]></xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="DEVELOPMENT"/>
+      <xs:enumeration value="PRODUCTION"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
